@@ -34,6 +34,27 @@ body {
     height: 100%;
 }
 
+.wrapper .menu {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: rgba(51, 51, 51, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.wrapper .menu .icon {
+    color: #fff;
+    font-size: 18px;
+}
+
 .wrapper .overlay {
     display: block;
     position: absolute;
@@ -56,7 +77,6 @@ body {
     color: #FFF;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
     width: calc(100% - 120px);
-    
 }
 
 .wrapper .main .inner {
@@ -71,8 +91,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
+    /* width: 120px;
+    height: 120px; */
+    width: 86px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #FFF;
@@ -133,22 +154,113 @@ body {
 }
 
 .wrapper .main .navigation-wrapper .cover-navigation .navigation .navigation-item {
-    line-height: 1em;
+    /* line-height: 1em; */
+    margin: 0 4px;
 }
 
 .wrapper .main .navigation-wrapper .cover-navigation .navigation .navigation-item .navigation-link {
     display: block;
     position: relative;
-    border-color: #FFF;
     color: #FFF;
     opacity: .8;
     padding: 10px 20px;
-    border: 1px solid #c0363f;
+    border: 1px solid #FFF;
     border-radius: 20px;
     font-size: .9em;
     font-weight: bold;
     letter-spacing: 1px;
     text-shadow: none;
+    text-decoration: none;
+}
+
+.wrapper .main .navigation-wrapper .cover-navigation .navigation .navigation-item .navigation-link.icon-link {
+    border: 0px;
+    padding: 6px 8px;
+}
+
+.wrapper .main .navigation-wrapper .cover-navigation.social .navigation .navigation-item .navigation-link.icon-link .icon {
+    font-size: 26px;
+}
+
+@media (max-width: 1100px) {
+    .wrapper .main .avatar {
+        width: 70px;
+    }
+    .wrapper .main .name {
+        font-size: 2em;
+    }
+    .wrapper .main .subtitle {
+        font-size: 1em;
+    }
+    .wrapper .main .description {
+        margin: 0 10px;
+        font-size: .9em;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation.social {
+        margin-top: 5px;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation.social .navigation .navigation-item .navigation-link.icon-link .icon {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 960px) {
+    .wrapper .main {
+        width: 80%;
+    }
+    .wrapper .main .description {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .wrapper .main .divider.short {
+        display: none;
+    }
+    .wrapper .menu {
+        display: flex;
+    }
+    .wrapper .main .navigation-wrapper {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background: rgba(51, 51, 51, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .wrapper .main .navigation-wrapper.visible {
+        display: block;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation {
+        display: block;
+        width: 100%;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation .navigation {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation .navigation .navigation-item {
+        width: 80%;
+        margin: 0 auto .4em;
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation.social .navigation {
+        /* width: 80%; */
+        margin: 0 auto;
+        display: block;
+        /* flex-direction: row; */
+    }
+    .wrapper .main .navigation-wrapper .cover-navigation.social .navigation .navigation-item {
+        display: inline-block;
+        width: 25.8%;
+    }
+}
+
+@media (max-width: 340px) {
+    .wrapper .main .navigation-wrapper .cover-navigation .navigation .navigation-item {
+        margin-bottom: .8em;
+    }
 }
 
 /* .wrapper {

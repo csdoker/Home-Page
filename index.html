@@ -13,9 +13,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="./style/normalize.css">
     <link rel="stylesheet" href="./style/index.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1569056_ncho5jegcs.css">
 </head>
 <body>
     <div class="wrapper">
+        <div class="menu">
+            <i id="menuIcon" class="icon iconfont icon-menu"></i>
+        </div>
         <div class="main">
             <div class="inner">
                 <a class="avatar" href="/" title="Csdoker">
@@ -27,18 +32,53 @@
                 <p class="description">你好，我叫陈抒迪，一名前端开发工程师</p>
                 <hr class="divider short">
                 <p class="description">Why do we fall sir? So that we can learn to pick ourselves up.<br>-「<strong>Dark Knight</strong>」</p>
-                <div class="navigation-wrapper">
+                <div class="navigation-wrapper" id="navigationWrapper">
                     <div>
                         <nav class="cover-navigation">
                             <ul class="navigation">
                                 <li class="navigation-item">
-                                    <a href="https//blog.csdoker.com" title="访问博客" class="navigation-link">博客</a>
+                                    <!-- <a href="https//blog.csdoker.com" title="访问博客" class="navigation-link">博客</a> -->
+                                    <a href="/" title="开发中，敬请期待" class="navigation-link">博客</a>
                                 </li>
                                 <li class="navigation-item">
-                                    <a href="https//resume.csdoker.com" title="我的简历" class="navigation-link">简历</a>
+                                    <!-- <a href="https//resume.csdoker.com" title="我的简历" class="navigation-link">简历</a> -->
+                                    <a href="/" title="开发中，敬请期待" class="navigation-link">简历</a>
                                 </li>
                                 <li class="navigation-item">
-                                    <a href="https//project.csdoker.com" title="个人项目" class="navigation-link">项目</a>
+                                    <!-- <a href="https//project.csdoker.com" title="个人项目" class="navigation-link">项目</a> -->
+                                    <a href="/" title="开发中，敬请期待" class="navigation-link">项目</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div>
+                        <nav class="cover-navigation social">
+                            <ul class="navigation">
+                                <li class="navigation-item">
+                                    <a href="https://github.com/csdoker" title="github" target="_blank" class="navigation-link icon-link">
+                                        <!-- <i class="icon fa fa-github"></i> -->
+                                        <i class="icon iconfont icon-github-fill"></i>
+                                    </a>
+                                </li>
+                                <li class="navigation-item">
+                                    <a href="http://wpa.qq.com/msgrd?v=3&uin=758371536&site=qq&menu=yes" title="qq" target="_blank" class="navigation-link icon-link">
+                                        <i class="icon iconfont icon-QQ"></i>
+                                    </a>
+                                </li>
+                                <li class="navigation-item">
+                                    <a href="https://www.zhihu.com/people/csdoker" title="zhihu" target="_blank" class="navigation-link icon-link">
+                                        <i class="icon iconfont icon-zhihu"></i>
+                                    </a>
+                                </li>
+                                <li class="navigation-item">
+                                    <a href="https://juejin.im/user/57e0e4dac4c9710061387d0e" title="juejin" target="_blank" class="navigation-link icon-link">
+                                        <i class="icon iconfont icon-juejin"></i>
+                                    </a>
+                                </li>
+                                <li class="navigation-item">
+                                    <a href="https://segmentfault.com/u/csdoker" title="segmentfault" target="_blank" class="navigation-link icon-link">
+                                        <i class="icon iconfont icon-sf"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
@@ -50,18 +90,38 @@
     </div>
     <script src="./js/ribbons-effect.js"></script>
     <script>
-        new Ribbons({
-            colorSaturation: "60%",
-            colorBrightness: "50%",
-            colorAlpha: 0.5,
-            colorCycleSpeed : 5,
-            verticalPosition : "random",
-            horizontalSpeed : 200,
-            ribbonCount: 3,
-            strokeSize: 0,
-            parallaxAmount : -0.2,
-            animateSections : true,
-        });
+        (function(){
+            function initRibbons() {
+                new Ribbons({
+                    colorSaturation: "60%",
+                    colorBrightness: "50%",
+                    colorAlpha: 0.5,
+                    colorCycleSpeed : 5,
+                    verticalPosition : "random",
+                    horizontalSpeed : 200,
+                    ribbonCount: 3,
+                    strokeSize: 0,
+                    parallaxAmount : -0.2,
+                    animateSections : true,
+                });
+            }
+            function bindEvent() {
+                const menuIcon = document.querySelector('#menuIcon')
+                menuIcon.addEventListener('click', function() {
+                    if (menuIcon.classList.contains('icon-menu')) {
+                        menuIcon.classList.remove('icon-menu')
+                        menuIcon.classList.add('icon-up')
+                    } else {
+                        menuIcon.classList.add('icon-menu')
+                        menuIcon.classList.remove('icon-up')
+                    }
+                    document.querySelector('#navigationWrapper').classList.toggle("visible");
+                })
+            }
+            initRibbons();
+            bindEvent();
+        })();
+        
     </script>
 </body>
 </html>
