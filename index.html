@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="./style/index.css">
     <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1569056_ncho5jegcs.css">
+    <link
+      rel="stylesheet"
+      href="./style/animate.min.css"
+    />
 </head>
 <body>
     <div class="wrapper">
@@ -32,7 +36,7 @@
                 <p class="description">你好，我叫陈抒迪，一名前端开发工程师</p>
                 <hr class="divider short">
                 <p class="description">Why do we fall sir? So that we can learn to pick ourselves up.<br>-「<strong>Dark Knight</strong>」</p>
-                <div class="navigation-wrapper" id="navigationWrapper">
+                <div class="navigation-wrapper fast" id="navigationWrapper">
                     <div>
                         <nav class="cover-navigation">
                             <ul class="navigation">
@@ -105,17 +109,34 @@
                     animateSections : true,
                 });
             }
+            function animateCSS(element, animationName, callback) {
+                var node = document.querySelector(element);
+                node.classList.add("animated", animationName);
+
+                function handleAnimationEnd() {
+                    node.classList.remove("animated", animationName);
+                    node.removeEventListener("animationend", handleAnimationEnd);
+
+                    if (typeof callback === "function") callback();
+                }
+
+                node.addEventListener("animationend", handleAnimationEnd);
+            }
             function bindEvent() {
-                const menuIcon = document.querySelector('#menuIcon')
+                var menuIcon = document.querySelector('#menuIcon')
                 menuIcon.addEventListener('click', function() {
                     if (menuIcon.classList.contains('icon-menu')) {
                         menuIcon.classList.remove('icon-menu')
                         menuIcon.classList.add('icon-up')
+                        document.querySelector('#navigationWrapper').classList.add("visible");
+                        animateCSS("#navigationWrapper", "bounceInDown");
                     } else {
                         menuIcon.classList.add('icon-menu')
                         menuIcon.classList.remove('icon-up')
+                        animateCSS("#navigationWrapper", "bounceOutUp", function() {
+                            document.querySelector('#navigationWrapper').classList.remove("visible");
+                        });
                     }
-                    document.querySelector('#navigationWrapper').classList.toggle("visible");
                 })
             }
             initRibbons();
