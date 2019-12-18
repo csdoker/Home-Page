@@ -15,6 +15,20 @@
         _b = document.body,
         _d = document.documentElement;
 
+    var getPixelRatio = function (context) {
+        // 浏览器在渲染canvas之前存储画布信息的像素比
+        const devicePixelRatio = window.devicePixelRatio || 1
+        const backingStoreRatio =
+            context.backingStorePixelRatio ||
+            context.webkitBackingStorePixelRatio ||
+            context.mozBackingStorePixelRatio ||
+            context.msBackingStorePixelRatio ||
+            context.oBackingStorePixelRatio ||
+            context.backingStorePixelRatio ||
+            1
+        return devicePixelRatio / backingStoreRatio
+    };
+
     // random helper
     var random = function()
     {
@@ -210,11 +224,11 @@
                 this._canvas.style["width"] = "100%";
                 this._canvas.style["height"] = "100%";
                 this._canvas.style["z-index"] = "-1";
+                this._context = this._canvas.getContext( "2d" );
                 this._onResize();
 
-                this._context = this._canvas.getContext( "2d" );
                 this._context.clearRect( 0, 0, this._width, this._height );
-                this._context.globalAlpha = this._options.colorAlpha;
+                // this._context.globalAlpha = this._options.colorAlpha;
 
                 window.addEventListener( "resize", this._onResize );
                 window.addEventListener( "scroll", this._onScroll );
@@ -419,12 +433,17 @@
             var screen   = screenInfo( e );
             this._width  = screen.width;
             this._height = screen.height;
+            this._ratio = getPixelRatio(this._context);
 
             if( this._canvas )
-            {
-                this._canvas.width  = this._width;
-                this._canvas.height = this._height;
+            {   
+                this._canvas.style.width = this._width + 'px';
+                this._canvas.style.height = this._height + 'px';
+
+                this._canvas.width = this._width * this._ratio;
+                this._canvas.height = this._height * this._ratio;
                 
+                this._context.scale(this._ratio, this._ratio);
                if( this._context )
                {
                   this._context.globalAlpha = this._options.colorAlpha;
