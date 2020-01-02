@@ -124,18 +124,25 @@
             }
             function bindEvent() {
                 var menuIcon = document.querySelector('#menuIcon')
+                var isAnimate = false;
                 menuIcon.addEventListener('click', function() {
-                    if (menuIcon.classList.contains('icon-menu')) {
-                        menuIcon.classList.remove('icon-menu')
-                        menuIcon.classList.add('icon-up')
-                        document.querySelector('#navigationWrapper').classList.add("visible");
-                        animateCSS("#navigationWrapper", "bounceInDown");
-                    } else {
-                        menuIcon.classList.add('icon-menu')
-                        menuIcon.classList.remove('icon-up')
-                        animateCSS("#navigationWrapper", "bounceOutUp", function() {
-                            document.querySelector('#navigationWrapper').classList.remove("visible");
-                        });
+                    if (!isAnimate) {
+                        isAnimate = true;
+                        if (menuIcon.classList.contains('icon-menu')) {
+                            menuIcon.classList.remove('icon-menu')
+                            menuIcon.classList.add('icon-up')
+                            document.querySelector('#navigationWrapper').classList.add("visible");
+                            animateCSS("#navigationWrapper", "bounceInDown", function() {
+                                isAnimate = false;
+                            });
+                        } else {
+                            menuIcon.classList.add('icon-menu')
+                            menuIcon.classList.remove('icon-up')
+                            animateCSS("#navigationWrapper", "bounceOutUp", function() {
+                                document.querySelector('#navigationWrapper').classList.remove("visible");
+                                isAnimate = false;
+                            });
+                        }
                     }
                 })
             }
